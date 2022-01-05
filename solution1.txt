@@ -1,0 +1,42 @@
+Uses Wincrt;
+Type
+  tab = Array [1..50] Of Integer;
+Var
+  i,j,n,sum: Integer;
+  t1,t2: tab ;
+  test: Boolean;
+Begin
+  //sets creation
+  Write('n= ');
+  Readln(n);
+  For i:=1 To n Do
+    Begin
+      Write('T1[',i,']= ');
+      Readln(t1[i]);
+      Write('T2[',i,']= ');
+      Readln(t2[i]);
+    End;
+  //calculating sets distincts elements sum
+  For i:=1 To n Do
+    Begin
+      test := True;
+      For j:=1 To n Do
+        Begin
+          If (t1[i]=t2[j]) Then
+            Begin
+              test := False;
+            End;
+        End;
+      If (test=True) Then
+        Begin
+          sum := sum+t1[i];
+        End;
+    End;
+  //sets output
+  For i:=1 To n Do
+    Begin
+      Writeln('T1[',i,']= ',t1[i]);
+      Writeln('T2[',i,']= ',t2[i]);
+    End;
+  Writeln('sum= ',sum);
+End.

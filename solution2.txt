@@ -1,0 +1,53 @@
+Uses Wincrt;
+Type
+  tab = Array [1..50] Of Integer;
+Var
+  i,n,sum,occ: Integer;
+  t1,t2: tab ;
+  test: Boolean;
+  htab : HASH_TABLE<Integer,String>;
+Begin
+  sum := 0;
+  //sets creation
+  Write('n= ');
+  Readln(n);
+  For i:=1 To n Do
+    Begin
+      Write('T1[',i,']= ');
+      Readln(t1[i]);
+      Write('T2[',i,']= ');
+      Readln(t2[i]);
+    End;
+  //hash table creation
+  For i:=1 To t1.Length Do
+    Begin
+      If (htab.lookup(t1[i]) = True) Then
+        Begin
+          occ := htab.get(t1[i]);
+          htab.Insert(t1[i],occ+1);
+        End;
+      Else
+        htab.Insert(t1[i],1);
+    End;
+  For i:=1 To t2.Length Do
+    Begin
+      If (htab.lookup(t2[i]) = True) Then
+        Begin
+          occ := htab.get(t2[i]);
+          htab.Insert(t2[i],occ+1);
+        End;
+      Else
+        htab.Insert(t2[i],1);
+    End;
+  //calcule sum
+  For i:=1 To t1.Length Do
+    Begin
+      If ((htab.get(t1[i]=False) And (htab.get(t2[i]=False) )Then
+        sum := sum+t1[i]+t2[i];
+      Else If ( (htab.get(t1[i]=False) And (htab.get(t2[i]=True) )
+              sum:=sum+t1[i];
+              Else If ((htab.get(t1[i]=True) And (htab.get(t2[i]=False) ) Then
+             sum := sum+t2[i];
+    End;
+  Writeln('sum = ',sum);
+End.
